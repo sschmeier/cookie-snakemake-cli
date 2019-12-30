@@ -1,0 +1,7 @@
+__program__ = "{{cookiecutter.project_slug}}"
+__version__ = "{{cookiecutter.version}}"
+__date__ = "{% now 'local', '%Y%M%D' %}"
+__author__ = "{{cookiecutter.author_name}}"
+__email__ = "{{cookiecutter.email}}"
+__url__="{{cookiecutter.url}}"
+__license__="{{cookiecutter.license}}"

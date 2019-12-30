@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+
+include cli/Snakefile
+recursive-include cli/example *
+

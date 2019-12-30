@@ -1,0 +1,19 @@
+{
+    "author_name": "Sebastian Schmeier",
+    "email": "s.schmeier@pm.me",
+    "github_username": "sschmeier",
+    "project_name": "Snakemake CLI",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_short_description": "Boilerplate contains all the boilerplate you need to create a Python CLI for a Snakemake project.",
+    "version": "0.1.0",
+    "url": "https://{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}.com",
+    "license": [
+        "MIT license",
+        "BSD license",
+        "ISC license",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ],
+    "snakemake_version": "5.9.1"
+}
