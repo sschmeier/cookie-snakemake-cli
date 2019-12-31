@@ -45,14 +45,7 @@ environment:
     
     conda create --yes -n {{cookiecutter.project_slug}} python=3.6
     conda activate {{cookiecutter.project_slug}}
-    pip install -r requirements.txt
-
-
-Now install the `{{cookiecutter.project_slug}}` command line tool:
-
-.. code-block:: bash
-
-    python setup.py build install
+    make install
 
 
 Now you can run
