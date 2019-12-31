@@ -48,11 +48,43 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 {{ cookiecutter.project_slug }} tests
+	flake8 cli tests
 
 test: ## run tests quickly with the default Python
+{%- if cookiecutter.use_pytest == 'y' %}
 	pytest
+{%- else %}
+	python setup.py test
+{%- endif %}
+
+coverage: ## check code coverage quickly with the default Python
+{%- if cookiecutter.use_pytest == 'y' %}
+	coverage run --source cli -m pytest
+{%- else %}
+	coverage run --source cli setup.py test
+{%- endif %}
+	coverage report -m
+	coverage html
+	$(BROWSER) htmlcov/index.html
+
+docs: ## generate Sphinx HTML documentation, including API docs
+	rm -f docs/{{ cookiecutter.project_slug }}.rst
+	rm -f docs/modules.rst
+	sphinx-apidoc -o docs/ {{ cookiecutter.project_slug }}
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
+	$(BROWSER) docs/_build/html/index.html
+
+servedocs: docs ## compile the docs watching for changes
+	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+
+release: dist ## package and upload a release
+	twine upload dist/*
+
+dist: clean ## builds source and wheel package
+	python setup.py sdist
+	python setup.py bdist_wheel
+	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	pip install -r requirements.txt
-    python setup.py build install
+	python setup.py install

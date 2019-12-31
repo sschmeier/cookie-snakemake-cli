@@ -1,9 +1,29 @@
-from setuptools import setup, find_packages
-import glob
-import os
+#!/usr/bin/env python
 
-with open("requirements.txt") as f:
-    required = [x for x in f.read().splitlines() if not x.startswith("#")]
+"""The setup script."""
+
+from setuptools import setup, find_packages
+
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
+
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
+
+with open("requirements.txt") as req_file:
+    requirements = [x for x in req_file.read().splitlines() if not x.startswith("#")]
+
+setup_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-runner',{%- endif %} ]
+
+test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest>=3',{%- endif %} ]
+
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD license': 'License :: OSI Approved :: BSD License',
+    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+} %}
 
 # Note: the __program__ variable is set in __init__.py.
 # it determines the name of the package/final command line tool.
@@ -12,22 +32,28 @@ from cli import __version__, __program__, __author__, __email__, __license__, __
 setup(
     name=__program__,
     version=__version__,
-    packages=["cli"],
-    test_suite="pytest.collector",
-    tests_require=["pytest"],
-    description=__program__,
-    url=__url__,
     author=__author__,
     author_email=__email__,
-    license=__license__,
+    python_requires='==3.6',
+    packages=["cli"],
+    description="{{ cookiecutter.project_short_description }}",
+    long_description=readme + '\n\n' + history,
+    install_requires=requirements,
+    test_suite="pytest.collector",
+    #test_suite='tests',
+    tests_require=test_requirements,
+    keywords='{{ cookiecutter.project_slug }}',
+    include_package_data=True,
+    setup_requires=setup_requirements,
+    url=__url__,
+    zip_safe=False,
     entry_points="""
       [console_scripts]
       {program} = cli.command:main
       """.format(
         program=__program__
     ),
-    install_requires=required,
-    include_package_data=True,
-    keywords=[],
-    zip_safe=False,
+{%- if cookiecutter.open_source_license in license_classifiers %}
+    license=__license__,
+{%- endif %}
 )

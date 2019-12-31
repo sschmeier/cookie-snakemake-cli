@@ -152,7 +152,7 @@ def main(sysargs=sys.argv[1:]):
         parser.print_help()
         desc="""
 Description
-===========
+-----------
 
 Run `{{cookiecutter.project_slug}} setup` to generate an example directory with 
 resources to make a {{cookiecutter.project_slug}} run.

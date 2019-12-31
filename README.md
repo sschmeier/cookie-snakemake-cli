@@ -2,7 +2,7 @@
 
 Based on [https://github.com/charlesreid1/2019-snakemake-cli](https://github.com/charlesreid1/2019-snakemake-cli).
 
-However, many changes have been made to adjust to my working style with Snakemake.
+However, many changes have been made to adjust to my working style with Snakemake and include more stuff for python packging.
 
 
 ## Usage
