@@ -11,4 +11,4 @@ However, many changes have been made to adjust to my working style with Snakemak
 cookiecutter https://github.com/sschmeier/cookie-snakemake-cli.git
 ```
 
-VERSION: 0.1.0
+VERSION: VERSION: "0.2.0"
