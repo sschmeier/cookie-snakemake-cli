@@ -5,15 +5,19 @@ import argparse
 import os.path
 import snakemake
 import sys
-import pprint
 import yaml
 import time
-import shutil, errno
+import shutil
+import errno
 
 # read from __init__.py
-from . import __program__, __version__, __email__, __date__, __author__
+from . import __program__
+from . import __version__
+from . import __email__
+from . import __date__
+from . import __author__
 
-## global vars
+# global vars
 thisdir = os.path.abspath(os.path.dirname(__file__))
 parentdir = os.path.join(thisdir, "..")
 cwd = os.getcwd()
@@ -150,17 +154,17 @@ def main(sysargs=sys.argv[1:]):
 
     if args.subparser_name == "help":
         parser.print_help()
-        desc="""
+        desc = """
 Description
 -----------
 
-Run `{{cookiecutter.project_slug}} setup` to generate an example directory with 
+Run `{{cookiecutter.project_slug}} setup` to generate an example directory with
 resources to make a {{cookiecutter.project_slug}} run.
 
-Enter the directory and edit the config.yaml file to your 
+Enter the directory and edit the config.yaml file to your
 project requirements.
 
-Run `{{cookiecutter.project_slug}} run config.yaml` from within the created 
+Run `{{cookiecutter.project_slug}} run config.yaml` from within the created
 directory.
 """
 
@@ -168,8 +172,6 @@ directory.
         sys.exit(0)
 
     elif args.subparser_name == "setup":
-        import shutil
-
         dest = os.path.join(cwd, args.directoryname)
         sys.stdout.write(f"{__program__} setup:\n")
         sys.stdout.write(
@@ -181,7 +183,7 @@ directory.
         if os.path.exists(dest):
             error(f'Destination example directory at "{dest}" already exists. EXIT.')
 
-        src = os.path.join(thisdir, "example")  # original in cli
+        src = os.path.join(thisdir, "example")  # original in {{ cookiecutter.project_slug }}
         copyanything(src, dest)
         success(f'Example directory for a {{cookiecutter.project_slug}} run created at: "{dest}".')
         return 0
@@ -213,8 +215,6 @@ directory.
 
         config = yaml.safe_load(open(args.configfile))
 
-
-
         # run snakemake
         status = snakemake.snakemake(
             snakefile,
@@ -226,7 +226,7 @@ directory.
             singularity_args=config["singularity_args"],
             use_conda=config["use_conda"],
             cores=config["cores"],
-            #config=config,
+            # config=config,
         )
 
         if status:  # translate "success" into shell exit code of 0
@@ -240,4 +240,3 @@ directory.
 
 if __name__ == "__main__":
     main()
-

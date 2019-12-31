@@ -82,6 +82,6 @@ Details
 -------
 
 The entrypoint of the command line interface is
-the `main()` function of `cli/command.py`.
+the `main()` function of `{{ cookiecutter.project_slug }}/command.py`.
 
-The location of the Snakefile is `cli/Snakefile`.
+The location of the Snakefile is `{{ cookiecutter.project_slug }}/Snakefile`.

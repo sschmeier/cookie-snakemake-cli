@@ -27,7 +27,7 @@ test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest>=3',{%- end
 
 # Note: the __program__ variable is set in __init__.py.
 # it determines the name of the package/final command line tool.
-from cli import __version__, __program__, __author__, __email__, __license__, __url__
+from {{ cookiecutter.project_slug }} import __version__, __program__, __author__, __email__, __license__, __url__
 
 setup(
     name=__program__,
@@ -35,12 +35,11 @@ setup(
     author=__author__,
     author_email=__email__,
     python_requires='==3.6',
-    packages=["cli"],
+    packages=[__program__],
     description="{{ cookiecutter.project_short_description }}",
     long_description=readme + '\n\n' + history,
     install_requires=requirements,
-    test_suite="pytest.collector",
-    #test_suite='tests',
+    test_suite='tests',
     tests_require=test_requirements,
     keywords='{{ cookiecutter.project_slug }}',
     include_package_data=True,
@@ -49,7 +48,7 @@ setup(
     zip_safe=False,
     entry_points="""
       [console_scripts]
-      {program} = cli.command:main
+      {program} = {{ cookiecutter.project_slug }}.command:main
       """.format(
         program=__program__
     ),

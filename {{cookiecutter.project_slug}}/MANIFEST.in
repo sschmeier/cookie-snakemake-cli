@@ -7,8 +7,8 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 
-include cli/Snakefile
-recursive-include cli/example *
+include {{ cookiecutter.project_slug }}/Snakefile
+recursive-include {{ cookiecutter.project_slug }}/example *
 
 recursive-include tests *
 recursive-exclude * __pycache__
