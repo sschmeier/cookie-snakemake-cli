@@ -104,13 +104,11 @@ def parse_cmdline():
 
     subparsers = parser.add_subparsers(dest="subparser_name")
 
-    p_config = subparsers.add_parser(
-        "help",
-        description="Print help.",
-    )
+    p_config = subparsers.add_parser("help", description="Print help.",)
     p_config = subparsers.add_parser(
         "setup",
-        description="Generate a directory with example files for a {{cookiecutter.project_slug}} run.",
+        description="Generate a directory with example files "
+        + "for a {{cookiecutter.project_slug}} run.",
     )
     p_config.add_argument(
         "-n",
@@ -120,7 +118,9 @@ def parse_cmdline():
         help='Directory name (not full path). [default: "example"]',
     )
 
-    p_run = subparsers.add_parser("run", description="Run {{cookiecutter.project_slug}} analysis.")
+    p_run = subparsers.add_parser(
+        "run", description="Run {{cookiecutter.project_slug}} analysis."
+    )
     p_run.add_argument(
         "configfile",
         metavar="CONFIG-FILE",
@@ -183,9 +183,12 @@ directory.
         if os.path.exists(dest):
             error(f'Destination example directory at "{dest}" already exists. EXIT.')
 
-        src = os.path.join(thisdir, "example")  # original in {{ cookiecutter.project_slug }}
+        src = os.path.join(thisdir, "example")  
         copyanything(src, dest)
-        success(f'Example directory for a {{cookiecutter.project_slug}} run created at: "{dest}".')
+        success(
+            f"Example directory for a {{cookiecutter.project_slug}} "
+            + f'run created at: "{dest}".'
+        )
         return 0
     elif args.subparser_name == "run":
         # first, find the Snakefile
@@ -230,7 +233,7 @@ directory.
         )
 
         if status:  # translate "success" into shell exit code of 0
-            success(f'Run finished successfully.')
+            success(f"Run finished successfully.")
             return 0
         return 1
     else:
