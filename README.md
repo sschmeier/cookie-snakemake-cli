@@ -10,3 +10,5 @@ However, many changes have been made to adjust to my working style with Snakemak
 ```bash
 cookiecutter https://github.com/sschmeier/cookie-snakemake-cli.git
 ```
+
+VERSION: 0.1.0
