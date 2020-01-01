@@ -46,7 +46,7 @@ class Test:
         """
         test workflow
         """
-        command = ["snakemake_cli_boilerplate", "setup", "-n", "test"]
+        command = ["{{ cookiecutter.project_slug }}", "setup", "-n", "test"]
         pwd = os.path.abspath(os.path.dirname(__file__))
         child = Popen(command, cwd=pwd, stdout=PIPE)
         streamdata = child.communicate()[0]
