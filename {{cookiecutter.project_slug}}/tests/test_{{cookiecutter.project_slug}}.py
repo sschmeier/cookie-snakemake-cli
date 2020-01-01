@@ -1,4 +1,4 @@
-from unittest import TestCase
+import pytest
 from subprocess import call, Popen, PIPE
 import os
 
@@ -18,7 +18,7 @@ pytest will automatically find these tests.
 """
 
 
-class Test(TestCase):
+class Test:
     """
     simple {{cookiecutter.project_slug}} test class
 
@@ -42,13 +42,24 @@ class Test(TestCase):
         """
         pass
 
-    def test_hello(self):
+    def test_setup(self):
+        """
+        test workflow
+        """
+        command = ["snakemake_cli_boilerplate", "setup", "-n", "test"]
+        pwd = os.path.abspath(os.path.dirname(__file__))
+        child = Popen(command, cwd=pwd, stdout=PIPE)
+        streamdata = child.communicate()[0]
+        rc = child.returncode
+        assert rc == 0
+
+    def test_run(self):
         """
         test workflow
         """
         command_prefix = ["{{ cookiecutter.project_slug }}", "run"]
 
-        params = ["config1.yaml", "config2.yaml"]
+        params = ["test/config.yaml"]
 
         pwd = os.path.abspath(os.path.dirname(__file__))
 

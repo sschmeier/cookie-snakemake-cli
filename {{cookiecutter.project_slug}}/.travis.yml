@@ -3,8 +3,8 @@ language: python
 python:
   - "3.6"
 install:
-  - pip install -r requirements.txt
-  - python setup.py build install
+  - pip install -r requirements_dev.txt
+  - make install
 # command to run tests
 script:
-  - pytest
+  - make test

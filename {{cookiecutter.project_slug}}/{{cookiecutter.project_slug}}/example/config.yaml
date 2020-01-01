@@ -3,7 +3,7 @@
 # run-specific parameter
 
 resultdir: "analysis"
-name: amy
+name: seb
 
 #############################
 # workflow-specific parameter
