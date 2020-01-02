@@ -45,7 +45,7 @@ environment:
     
     conda create --yes -n {{cookiecutter.project_slug}} python=3.6
     conda activate {{cookiecutter.project_slug}}
-    conda install --yes --file requirements.txt
+    pip install -r requirements.txt
     make install
 
 
@@ -66,7 +66,7 @@ Running {{cookiecutter.project_slug}}
 
 .. code-block:: bash
 
-    {{cookiecutter.project_slug}} setup
+    {{cookiecutter.project_slug}} setup -n example
     cd example
     # Edit the config.yaml to your specific project needs
     {{cookiecutter.project_slug}} run config.yaml
