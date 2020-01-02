@@ -32,7 +32,7 @@ Quickstart
 ----------
 
 This runs through the installation and usage
-of `snakemake-cli`.
+of `{{cookiecutter.project_slug}}`.
 
 Quick install
 -------------
@@ -41,19 +41,19 @@ Start by setting up a conda environment,
 and install the required packages into the
 environment:
 
-.. code-block:: bash
+.. code-block:: console
     
-    conda create --yes -n {{cookiecutter.project_slug}} python=3.6
-    conda activate {{cookiecutter.project_slug}}
-    pip install -r requirements.txt
-    make install
+    $ conda create --yes -n {{cookiecutter.project_slug}} python=3.6
+    $ conda activate {{cookiecutter.project_slug}}
+    $ pip install -r requirements.txt
+    $ make install
 
 
 Now you can run
 
-.. code-block:: bash
+.. code-block:: console
 
-    which {{cookiecutter.project_slug}}
+    $ which {{cookiecutter.project_slug}}
 
 
 and you should see `{{cookiecutter.project_slug}}` in your
@@ -64,7 +64,7 @@ Running {{cookiecutter.project_slug}}
 --------{% for _ in cookiecutter.project_slug %}-{% endfor %}
 
 
-.. code-block:: bash
+.. code-block:: console
 
     {{cookiecutter.project_slug}} setup -n example
     cd example
