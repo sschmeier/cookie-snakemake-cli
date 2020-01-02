@@ -16,4 +16,4 @@ Usage
     
 3. Run the Snakemake workflow::
 
-    {{cookiecutter.project_slug}} run config.yaml
+    $ {{cookiecutter.project_slug}} run config.yaml

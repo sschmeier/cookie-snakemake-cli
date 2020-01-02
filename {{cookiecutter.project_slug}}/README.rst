@@ -66,10 +66,10 @@ Running {{cookiecutter.project_slug}}
 
 .. code-block:: console
 
-    {{cookiecutter.project_slug}} setup -n example
-    cd example
+    $ {{cookiecutter.project_slug}} setup -n example
+    $ cd example
     # Edit the config.yaml to your specific project needs
-    {{cookiecutter.project_slug}} run config.yaml
+    $ {{cookiecutter.project_slug}} run config.yaml
 
 
 Details
